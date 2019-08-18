@@ -1,0 +1,7 @@
+{
+  "name": "myprojectinoic",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

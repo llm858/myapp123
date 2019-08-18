@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      用户登录
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+ <ion-content>  
+<form class="myinput" #myForm="ngForm" (ngSubmit)="onSubmit(myForm.value)">
+  <ion-input  style="margin-left:15px;margin-top:30px;" name="uname" required [(ngModel)]="uname" placeholder="请输入用户名">用户名：</ion-input>
+  <ion-input  style="margin-left:32px;margin-top:15px;" name="upwd" required [(ngModel)]="upwd" type="password"  placeholder="请输入密码">密码：</ion-input>
+  <ion-button type="submit" (ngSubmit)="onSubmit(myForm.value)"  style="text-align:center;width:300px;margin-left:30px;margin-top:30px;">登录</ion-button>
+</form>
+</ion-content> 

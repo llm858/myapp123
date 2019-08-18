@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      旅游网-首页
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card class="welcome-card">
+        <ion-slides pager="true" [options]="slideOpts">
+            <ion-slide>
+                <img src="http://travel123.applinzi.com/img/lunbotu1.jpg" alt="" />
+            </ion-slide>
+            <ion-slide>
+                <img src="http://travel123.applinzi.com/img/lunbotu2.jpg" alt="" />
+            </ion-slide>
+            <ion-slide>
+                <img src="http://travel123.applinzi.com/img/lunbotu3.jpg" alt="" />
+            </ion-slide>
+          </ion-slides>
+      <ion-card-header>
+        <ion-card-title>我们的旅游路线</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>风景的意义，不是逃避，不是躲藏，不是获取，不是记录，而是在想象的之外的环境里，
+
+       去改变自己的世界观，从此慢慢改变心中真正觉得重要的东西。</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-list lines="none">
+      <ion-list-header>
+        <ion-label style="font-size:20px">产品列表</ion-label>
+      </ion-list-header>
+    </ion-list>
+  <ion-grid>
+  <ion-row style="text-align:center;font-size:14px;">
+    <ion-col size='6' *ngFor="let items of productToshow">
+      <img class="product" [src]="items.img">
+      <h4>￥{{items.price}}</h4>
+      <p>{{items.details}}</p>
+      <ion-button class="mybtn" [routerLink]="['/tabs/tab2']" [queryParams]="{did:items.did}">查看详情</ion-button>
+    </ion-col>
+  </ion-row>
+  </ion-grid>
+</ion-content>

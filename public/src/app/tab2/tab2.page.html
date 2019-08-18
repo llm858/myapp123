@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      商品详情
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card class="welcome-card" *ngFor="let item of productDetails">
+      <img class="productdetails" [src]="item.img">
+      <ion-card-header>
+        <ion-card-title>{{item.details}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <span>价格：</span>
+        <span style="font-size:24px;color:red">￥{{item.price}}</span>
+        <div class="mycount">
+          <span style="font-size:18px;padding-top:5px;">数量：</span>
+          <ion-button (click)="min()">-</ion-button>
+          <ion-button>{{item.count}}</ion-button>
+          <ion-button (click)="add()">+</ion-button>
+        </div>
+        <ion-button color="danger" (click)="addCart()">加入购物车
+          <ion-icon slot="start" name="cart"></ion-icon>
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+</ion-content>
