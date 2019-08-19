@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab3',
@@ -9,9 +9,11 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
-  private uname:''
-  private upwd:''
-  constructor(private route:ActivatedRoute,private http:HttpClient,private alertController:AlertController) {}
+  private uname=''
+  private upwd=''
+  pushPage: any;
+  constructor(private route:ActivatedRoute,private http:HttpClient,private alertController:AlertController) {
+  }
   ngOnInit(){
   }
   async presentAlert() {
@@ -39,7 +41,7 @@ export class Tab3Page {
       console.log(data1);
       sessionStorage.setItem("uname",value.uname);
       this.http.get(url,{params:data1}).subscribe((res:any)=>{
-        //console.log(res);
+        console.log(res);
          if(res.code==1){
           this.presentAlert();
            this.uname="";

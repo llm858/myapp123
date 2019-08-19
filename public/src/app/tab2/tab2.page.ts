@@ -10,7 +10,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class Tab2Page {
 //显示要加载的商品对象
-  private productDetails
+  private productDetails=[]
   constructor(private route:ActivatedRoute,private http:HttpClient,public alertController:AlertController) {}
   async presentAlert() {
     const alert = await this.alertController.create({
