@@ -48,6 +48,16 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'register',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../register/register.module').then(m => m.RegisterPageModule)
+          }
+        ]
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'

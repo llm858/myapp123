@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>用户注册</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form class="myForm" #myForm="ngForm" (ngSubmit)="onSubmit(myForm.value)">
+   <ion-list>
+     <ion-item>
+       <ion-label>用户名:</ion-label>
+        <ion-input type="text"  name="uname" validator-regular="legallyNamed" [(ngModel)]="model.uname" #uname="ngModel"  minlength="4" pattern="[a-zA-Z0-9]{4,20}"  required placeholder="4到20位长度的英文或数字"></ion-input>
+        <div *ngIf="uname.invalid && (uname.dirty|| uname.touched)" class="alert alert-danger" style="color:red">
+        <div  style="color:red" *ngIf="uname.errors.pattern">4到20位的英文或数字</div>
+        <div  style="color:red" *ngIf="uname.errors.required">用户名不能为空</div>
+      </div>
+    </ion-item>
+   </ion-list>
+   <ion-list>
+      <ion-item>
+        <ion-label>密码:</ion-label>
+        <ion-input name="upwd"  type="password" [(ngModel)]="model.upwd" #upwd="ngModel"   pattern="[a-zA-Z0-9]{6,20}" maxlength="20" minlength="6" required placeholder="6~20位的英文或数字"></ion-input>
+        <div *ngIf="upwd.invalid && (upwd.dirty || upwd.touched)" style="color:red" class="alert alert-danger">
+        <div style="color:red" *ngIf="upwd.errors.minlength">6到20位的英文或数字</div>
+        <div style="color:red" *ngIf="upwd.errors.required">密码不能为空</div>
+      </div>
+      </ion-item>
+      </ion-list>
+      <ion-list>
+          <ion-item>
+            <ion-label>电话:</ion-label>
+            <ion-input name="tel" pattern="^[1]+[3,8]+\d{9}$" type="tel" ng-maxlength="11" validator-regular="phone"  [(ngModel)]="model.tel" #tel="ngModel"  required placeholder="请输入11位手机号"></ion-input>
+            <div *ngIf="tel.invalid && (tel.dirty || tel.touched)" style="color:red" class="alert alert-danger">
+            <div style="color:red" *ngIf="tel.errors.pattern">电话号码格式不正确</div>
+            <div style="color:red" *ngIf="tel.errors.required">电话号码不能为空</div>
+            </div>
+          </ion-item>
+        </ion-list>
+        <ion-list>
+            <ion-item>
+              <ion-label>邮箱:</ion-label>
+              <ion-input name="email"  pattern="^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{3}(\.[a-z]{2})?)$" validator-regular="email" [(ngModel)]="model.email" #email="ngModel" required placeholder="请输入邮箱"></ion-input>
+              <div *ngIf="email.invalid && (email.dirty || email.touched)" style="color:red" class="alert alert-danger">
+              <div style="color:red" *ngIf="email.errors.pattern">邮箱格式不正确</div>
+              <div style="color:red" *ngIf="email.errors.required">邮箱不能为空</div>
+              </div>
+            </ion-item>
+          </ion-list>
+      <ion-button type="submit" (ngSubmit)="onSubmit(myForm.value)" style="text-align:center;width:300px;margin-left:30px;margin-top:30px;">注册</ion-button>
+</form>
+</ion-content>

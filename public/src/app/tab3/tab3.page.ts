@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AlertController, NavController } from '@ionic/angular';
+import { Tab1Page } from '../tab1/tab1.page';
 
 @Component({
   selector: 'app-tab3',
@@ -12,7 +13,11 @@ export class Tab3Page {
   private uname=''
   private upwd=''
   pushPage: any;
-  constructor(private route:ActivatedRoute,private http:HttpClient,private alertController:AlertController) {
+  constructor(private navControl:NavController,
+     private route:ActivatedRoute,
+     private http:HttpClient,
+     private alertController:AlertController,
+     private nav:NavController) {
   }
   ngOnInit(){
   }
@@ -32,7 +37,29 @@ export class Tab3Page {
 
     await alert.present();
   }
+  async presentAlert2() {
+    const alert = await this.alertController.create({
+      message: '用户名不能为空',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+  async presentAlert3() {
+    const alert = await this.alertController.create({
+      message: '密码不能为空',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
   onSubmit(value){
+    if(value.uname==''){
+      this.presentAlert2();return;
+    }
+    if(value.upwd==''){
+      this.presentAlert3();return;
+    }
       let url="http://travel123.applinzi.com/index/root"
       let data1={
         "uname":value.uname,
@@ -44,6 +71,7 @@ export class Tab3Page {
         console.log(res);
          if(res.code==1){
           this.presentAlert();
+          this.nav.navigateForward("tabs/tab1");
            this.uname="";
            this.upwd="";
            let did=res.data[0].did;

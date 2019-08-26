@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2',
@@ -11,7 +11,10 @@ import { AlertController } from '@ionic/angular';
 export class Tab2Page {
 //显示要加载的商品对象
   private productDetails=[]
-  constructor(private route:ActivatedRoute,private http:HttpClient,public alertController:AlertController) {}
+  constructor(private route:ActivatedRoute,
+    private http:HttpClient,
+    public alertController:AlertController,
+    private nav:NavController) {}
   async presentAlert() {
     const alert = await this.alertController.create({
       message: '添加成功',
@@ -56,6 +59,7 @@ export class Tab2Page {
     let uname=sessionStorage.getItem("uname")//用户id
     if(uname==""||uname==undefined||uname==null){
      this.presentAlert1();
+     this.nav.navigateForward('tabs/tab3');
     }else{
         let url="http://travel123.applinzi.com/index/add-cart";
         //let id=this.route.snapshot.queryParams['did'];//获取商品id

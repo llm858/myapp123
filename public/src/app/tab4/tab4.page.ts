@@ -12,10 +12,16 @@ export class Tab4Page{
 private productShow=[]
 private totalPrice=0
 private isSelect=false
+private isHas:boolean
   constructor(private route:ActivatedRoute,private http:HttpClient,private alertController:AlertController) { }
 
   ngOnInit() {
     this.loadMore();
+    if(this.productShow.length>0){
+      this.isHas=true;
+    }else if(this.productShow.length==0){
+      this.isHas=false;
+    }
   }
   async presentAlert() {
     const alert = await this.alertController.create({
